@@ -5,8 +5,6 @@
   = Đề xuất phương pháp MPBoot2 <chuong4>
 ]
 
-#show: body => first_line_indent_all_body(body)
-
 == Các thay đổi so với MPBoot
 
 Chúng tôi cài đặt MPBoot2 bằng ngôn ngữ C/C++ dưới dạng một phần mềm dòng lệnh mã nguồn mở, dựa trên mã nguồn công bố của MPBoot và cấu trúc cây của thư viện PLL @flouri2015phylogenetic. MPBoot2 được công khai mã nguồn tại địa chỉ Github #link("https://github.com/HynDuf/mpboot/tree/mpboot2")[https://github.com/HynDuf/mpboot/tree/mpboot2].

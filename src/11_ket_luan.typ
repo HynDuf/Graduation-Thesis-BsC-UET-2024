@@ -5,8 +5,6 @@
   = Kết luận <chuong6>
 ]
 
-#show: body => first_line_indent_all_body(body)
-
 == Kết quả đạt được
 
 Qua quá trình nghiên cứu, cài đặt, thực nghiệm và hiệu chỉnh tham số, khóa luận

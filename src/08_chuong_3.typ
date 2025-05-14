@@ -6,8 +6,6 @@
   = Tích hợp phép biến đổi TBR vào MPBoot <chuong3>
 ]
 
-#show: body => first_line_indent_all_body(body)
-
 == Khung thuật toán MPBoot
 
 Để giải bài xây dựng cây tiến hóa bootstrap, thuật toán MPBoot duy trì một tập cây $cal(C)$ gồm $C$ cây

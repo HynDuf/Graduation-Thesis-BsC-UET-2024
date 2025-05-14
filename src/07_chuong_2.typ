@@ -5,8 +5,6 @@
   = Các khái niệm cơ sở <chuong2>
 ]
 
-#show: body => first_line_indent_all_body(body)
-
 == Bài toán xây dựng cây bootstrap tiến hóa
 === Mô hình bài toán
 

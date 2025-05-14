@@ -25,6 +25,7 @@
       
       #v(1.2cm)
       #align(center)[
+        #set par(justify: false)
         #text(18pt,  upper(strong(title)))
       ]
       #v(2cm)

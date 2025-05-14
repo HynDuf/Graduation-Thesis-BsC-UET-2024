@@ -4,7 +4,6 @@
   #set heading(numbering: "Chương 1.1")
   = Giới thiệu <chuong1>
 ]
-#show: body => first_line_indent_all_body(body)
 == Tổng quan
 
 Tin sinh học (Bioinformatics) là một lĩnh vực liên ngành kết hợp giữa sinh học, công nghệ

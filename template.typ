@@ -1,41 +1,26 @@
 #import "@preview/showybox:2.0.1" : showybox
 #import "src/00_trang_bia.typ": trang_bia
 #import "src/01_trang_phu_bia.typ": trang_phu_bia
-#import "@preview/codly:1.0.0": *
+#import "@preview/codly:1.3.0": *
 
-#let outline_algo(x, caption, label) = {
-  return [
-    #figure(x, kind: "algo", supplement: [Thuật toán], caption: caption) #label
-  ]
-}
-#let heading_numbering(..nums) = {
+#let heading_numbering(..nums) = {
   return str(counter(heading).get().first()) + "." + nums
   .pos()
   .map(str)
   .join(".")
 }
-
 #let phuluc_numbering(..nums) = {
   return str.from-unicode(counter(heading).get().at(1) + 64) + "." + nums
   .pos()
   .map(str)
   .join(".")
 }
-#let first_line_indent_all_body = (body) => {
-  // Iterate through the children of the body
-  for (ie, elem) in body.children.enumerate() {
-    if elem.func() == text {
-      // Check for a paragraph break before the current element
-      if ie > 0 and body.children.at(ie - 1).func() == parbreak {
-        // Add spacing if needed
-        h(1cm)
-      }
-      elem
-    } else {
-      elem
-    }
-  }
-};
+
+#let outline_algo(x, caption, label) = {
+  return [
+    #figure(x, kind: "algo", supplement: [Thuật toán], caption: caption, numbering: heading_numbering) #label
+  ]
+}
 
 #let numbered_equation(content, label) = {
   return [
@@ -77,6 +62,8 @@
   show heading.where(level: 1): it => [
     #counter(figure.where(kind: image)).update(0)
     #counter(figure.where(kind: table)).update(0)
+    #counter(figure.where(kind: "algo")).update(0)
+
     #pagebreak(weak: true)
     #if (not str(counter(heading).display()).starts-with("Chương")) {
       text(35pt, it)
@@ -105,7 +92,7 @@
           link(it.element.location())[#it.element.body ]
           box(width: 1fr, it.fill)
           h(3pt)
-          link(it.element.location())[#it.page]
+          link(it.element.location())[#it.page()]
         },
       )
     }
@@ -119,7 +106,7 @@
       link(it.element.location())[ #it.element.body ]
       box(width: 1fr, it.fill)
       h(3pt)
-      link(it.element.location())[#it.page]
+      link(it.element.location())[#it.page()]
     }
     show outline.entry.where(level: 3): it => {
       v(20pt, weak: true)
@@ -131,7 +118,7 @@
       link(it.element.location())[ #it.element.body ]
       box(width: 1fr, it.fill)
       h(3pt)
-      link(it.element.location())[#it.page]
+      link(it.element.location())[#it.page()]
     }
     // show outline.entry.where(
     //   level: 3
@@ -165,16 +152,7 @@
     set footnote.entry(separator: none)
     show footnote.entry: hide
     show ref: none
-    show footnote: none
-
-    show outline.entry.where(level: 1): it => {
-      v(20pt, weak: true)
-      link(it.element.location())[#it.element.caption]
-      h(3pt)
-      box(width: 1fr, it.fill)
-      h(3pt)
-      link(it.element.location())[#it.page]
-    }
+    show footnote: none
     {
       show heading: none
       heading(numbering: none)[Danh mục hình ảnh]
@@ -240,7 +218,7 @@
 
   // show heading: set text(13pt)
 
-  set par(leading: 0.8em, spacing: 1.5em)
+  set par(first-line-indent: (amount: 1.5em, all: true), leading: 0.8em, spacing: 1.5em)
   set block(spacing: 1.2em)
   set list(indent: 0.8em)
   show heading: set block(spacing: 1.5em)
@@ -261,14 +239,16 @@
   set figure(gap: 3pt, numbering: heading_numbering)
 
   show figure.where(kind: image): set figure(gap: 15pt, numbering: heading_numbering)
+
   show figure.caption: c => [
-    #context text(weight: "bold")[
+    #context text(weight: "bold", size: 13pt)[
     #c.supplement #c.counter.display(c.numbering)
     ]
     #c.separator#c.body
     #v(0.4cm)
   ]
   show figure.where(kind: table): set figure.caption(position: top)
+
   show figure.where(kind: "algo"): set figure.caption(position: top)
 
   show raw.where(block: false): box.with(

@@ -5,8 +5,6 @@
   = Đề xuất phương pháp MPBoot-RL <chuong5>
 ]
 
-#show: body => first_line_indent_all_body(body)
-
 == Áp dụng ACO vào MPBoot2
 
 Như đã phân tích ở @spr-vs-tbr, dù leo đồi sử dụng TBR5 nhìn chung có cải thiện hơn so với sử dụng SPR6, nhưng vẫn có nhiều bộ dữ liệu mà SPR6 tỏ ra hiệu quả hơn so với TBR5. Không những thế, với những bộ dữ liệu dễ, sử dụng thuật toán NNI khi đó sẽ tăng tốc độ tìm kiếm đáng kể. Vì những lí do trên, việc kết hợp NNI, SPR và TBR có tiềm năng cải thiện hiệu suất thuật toán, cải thiện điểm số, và từ đó tăng cường độ chính xác của bootstrap. Kết hợp các phép biến đổi cây có thể được thực hiện ở bước leo đồi ở pha khám phá của MPBoot (xem @mpboot-iter).
